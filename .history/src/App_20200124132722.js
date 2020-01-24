@@ -7,7 +7,7 @@ import ListImage from './components/ListImage';
 
 function App() {
 
-  const [query, setQuety] = useState('');
+  const[query, setQuety] = useState('');
 
   const [images, setImages] = useState([]);
 
@@ -15,15 +15,15 @@ function App() {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    if (query === '') return;
+    if(query === '') return;
     fetchApi()
-  }, [query, currentPage])
+  }, [query])
 
   const fetchApi = async () => {
 
     const imagen_pp = 30;
 
-    const url = `${GLOBAL.url}?key=${GLOBAL.apiKey}&q=${query}&per_page=${imagen_pp}&page=${currentPage}`;
+    const url = `${GLOBAL.url}?key=${GLOBAL.apiKey}&q=${query}&per_page=${imagen_pp}`;
 
     const result = await Axios.get(url);
 
@@ -31,26 +31,17 @@ function App() {
 
     setImages(result.data.hits)
 
-    //MOver arriba
-
-    const jumbotron = document.querySelector('.jumbotron');
-    jumbotron.scrollIntoView({ behavior:'smooth', block:'end'});
-
   }
 
   const nextPage = () => {
-
-    let newCurrentPage = currentPage + 1;
-
-    setCurrentPage(newCurrentPage);
     console.log('Next');
   }
 
   const previousPage = () => {
 
-    let newCurrentPage = currentPage - 1;
+    let newPreviosPage = currentPage - 1;
 
-    setCurrentPage(newCurrentPage);
+    setCurrentPage(newPreviosPage);
 
     console.log('Previous');
   }
@@ -58,18 +49,17 @@ function App() {
   return (
     <div className="container">
       <div className="jumbotron">
-
         <div className="lead text-center">
-          <Search setQuety={setQuety} />
+          <Search  setQuety={setQuety}/>
         </div>
       </div>
 
       <div className="row justify-content-center">
-        <ListImage images={images} />
+        <ListImage images={images}/>
 
-        {(currentPage === 1) ? null : <button onClick={previousPage} type="button" className="btn btn-info mr-1">&laquo; Anterior</button>}
+<button onClick={nextPage} type="button" className="btn btn-info mr-1">&laquo; Anterior</button>
 
-        {(currentPage === totalPages) ? null : <button onClick={nextPage} type="button" className="btn btn-info mr-1">Siguiente &raquo;</button>}
+<button onClick={previousPage} type="button" className="btn btn-info mr-1">Siguiente &raquo;</button>
 
       </div>
     </div>

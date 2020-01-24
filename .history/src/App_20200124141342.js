@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Search from './components/Search';
 import { GLOBAL } from './config/Constants';
 import Axios from 'axios';
@@ -58,7 +59,6 @@ function App() {
   return (
     <div className="container">
       <div className="jumbotron">
-
         <div className="lead text-center">
           <Search setQuety={setQuety} />
         </div>

@@ -34,7 +34,7 @@ function App() {
     //MOver arriba
 
     const jumbotron = document.querySelector('.jumbotron');
-    jumbotron.scrollIntoView({ behavior:'smooth', block:'end'});
+    jumbotron.scrollIntoView('smootn', 'start');
 
   }
 
@@ -58,7 +58,6 @@ function App() {
   return (
     <div className="container">
       <div className="jumbotron">
-
         <div className="lead text-center">
           <Search setQuety={setQuety} />
         </div>

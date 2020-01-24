@@ -58,7 +58,6 @@ function App() {
   return (
     <div className="container">
       <div className="jumbotron">
-
         <div className="lead text-center">
           <Search setQuety={setQuety} />
         </div>

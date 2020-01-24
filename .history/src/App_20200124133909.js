@@ -31,11 +31,6 @@ function App() {
 
     setImages(result.data.hits)
 
-    //MOver arriba
-
-    const jumbotron = document.querySelector('.jumbotron');
-    jumbotron.scrollIntoView({ behavior:'smooth', block:'end'});
-
   }
 
   const nextPage = () => {
@@ -58,7 +53,6 @@ function App() {
   return (
     <div className="container">
       <div className="jumbotron">
-
         <div className="lead text-center">
           <Search setQuety={setQuety} />
         </div>

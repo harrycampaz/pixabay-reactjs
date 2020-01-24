@@ -17,24 +17,19 @@ function App() {
   useEffect(() => {
     if (query === '') return;
     fetchApi()
-  }, [query, currentPage])
+  }, [query])
 
   const fetchApi = async () => {
 
     const imagen_pp = 30;
 
-    const url = `${GLOBAL.url}?key=${GLOBAL.apiKey}&q=${query}&per_page=${imagen_pp}&page=${currentPage}`;
+    const url = `${GLOBAL.url}?key=${GLOBAL.apiKey}&q=${query}&per_page=${imagen_pp}`;
 
     const result = await Axios.get(url);
 
     setTotalPages(Math.ceil(result.data.totalHits / imagen_pp));
 
     setImages(result.data.hits)
-
-    //MOver arriba
-
-    const jumbotron = document.querySelector('.jumbotron');
-    jumbotron.scrollIntoView({ behavior:'smooth', block:'end'});
 
   }
 
@@ -58,7 +53,6 @@ function App() {
   return (
     <div className="container">
       <div className="jumbotron">
-
         <div className="lead text-center">
           <Search setQuety={setQuety} />
         </div>
@@ -67,9 +61,9 @@ function App() {
       <div className="row justify-content-center">
         <ListImage images={images} />
 
-        {(currentPage === 1) ? null : <button onClick={previousPage} type="button" className="btn btn-info mr-1">&laquo; Anterior</button>}
+        <button onClick={previousPage} type="button" className="btn btn-info mr-1">&laquo; Anterior</button>
 
-        {(currentPage === totalPages) ? null : <button onClick={nextPage} type="button" className="btn btn-info mr-1">Siguiente &raquo;</button>}
+        <button onClick={nextPage} type="button" className="btn btn-info mr-1">Siguiente &raquo;</button>
 
       </div>
     </div>
